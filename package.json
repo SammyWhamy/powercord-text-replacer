@@ -1,7 +1,7 @@
 {
-  "name": "text-replacer",
+  "name": "powercord-text-replacer",
   "version": "0.0.1",
-  "description": "A simple powercord plugin to replace any text with any other text",
+  "description": "A simple Powercord plugin to replace any text with any other text",
   "main": "index.js",
   "repository": "https://github.com/SammyWhamy/powercord-text-replacer.git",
   "author": "Sammy#1001",
