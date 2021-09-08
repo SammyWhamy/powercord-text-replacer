@@ -9,8 +9,7 @@ module.exports = class PluginList extends React.Component {
         super(props)
 
         this.state = {
-            search: '',
-            settings: this.props.settings
+            search: ''
         }
     }
 
@@ -18,7 +17,7 @@ module.exports = class PluginList extends React.Component {
         return (
             <div>
                 {
-                    settings.map(setting => <ReplaceOption setting={setting}/>)
+                    this.props.settings.map(setting => <ReplaceOption setting={setting}/>)
                 }
             </div>
         )
