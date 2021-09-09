@@ -31,7 +31,7 @@ module.exports = class TextReplacer extends Plugin {
         const messageEvents = await getModule(["sendMessage"]);
 
         inject("replacerSend", messageEvents, "sendMessage", function(args) {
-            const enabled = parentThis.settings.get('enabled');
+            const enabled = parentThis.settings.get('enabled', true);
             const replaceInCommands = parentThis.settings.get('replaceInCommands');
             if (enabled && (replaceInCommands || !args[1].content.startsWith(powercord.api.commands.prefix))) {
                 args[1].content = replacer(args[1].content);
@@ -43,7 +43,7 @@ module.exports = class TextReplacer extends Plugin {
             command: 'togglereplacer',
             description: `Toggle text replacer`,
             executor: () => {
-                const enabled = this.settings.get('enabled', false);
+                const enabled = this.settings.get('enabled', true);
                 this.settings.set('enabled', !enabled)
             }
         });
