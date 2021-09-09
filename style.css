@@ -1,0 +1,39 @@
+.inputContainer > div > div {
+    margin-top: 0;
+    height: initial;
+    border-top: none;
+}
+
+.inputContainer > div {
+    margin: auto;
+}
+
+.inlineInput {
+    margin: auto;
+}
+
+.inlineText {
+    font-size: 105%;
+    margin: auto;
+}
+
+.settingContainer {
+    display: inline-flex;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+.settingContainer:last-child {
+    padding-bottom: 0;
+}
+
+.inputContainer {
+    display: inline-flex;
+    width: 82%;
+    justify-content: space-around;
+}
+
+.deleteButton {
+    justify-content: right;
+    margin-left: auto;
+}

@@ -4,8 +4,10 @@ const { inject, uninject } = require('powercord/injector');
 
 const Settings = require('./components/Settings');
 
-module.exports = class Owoify extends Plugin {
+module.exports = class TextReplacer extends Plugin {
     async startPlugin() {
+        this.loadStylesheet('./style.css');
+
         powercord.api.settings.registerSettings(this.entityID, {
             category: this.entityID,
             label: 'Text Replacer',
@@ -15,17 +17,22 @@ module.exports = class Owoify extends Plugin {
             }),
         });
 
-        // let parentThis = this;
+        const parentThis = this;
 
-        function replacer() {
-
+        function replacer(string) {
+            let newString = string;
+            const settings = parentThis.settings.get('keylist', []);
+            for(const setting of settings) {
+                newString = newString.replace(setting.key, setting.value);
+            }
+            return newString;
         }
 
         const messageEvents = await getModule(["sendMessage"]);
 
         inject("replacerSend", messageEvents, "sendMessage", function(args) {
-            const enabled = this.settings.get('enabled');
-            const replaceInCommands = this.settings.get('replaceInCommands');
+            const enabled = parentThis.settings.get('enabled');
+            const replaceInCommands = parentThis.settings.get('replaceInCommands');
             if (enabled && (replaceInCommands || !args[1].content.startsWith(powercord.api.commands.prefix))) {
                 args[1].content = replacer(args[1].content);
             }
@@ -35,7 +42,10 @@ module.exports = class Owoify extends Plugin {
         powercord.api.commands.registerCommand({
             command: 'togglereplacer',
             description: `Toggle text replacer`,
-            executor: () => this.settings.set('enabled', !this.settings.get('enabled', false)),
+            executor: () => {
+                const enabled = this.settings.get('enabled', false);
+                this.settings.set('enabled', !enabled)
+            }
         });
     }
 

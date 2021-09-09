@@ -1,5 +1,5 @@
 const { React } = require('powercord/webpack');
-const { SwitchItem, TextInput } = require('powercord/components/settings');
+const { SwitchItem } = require('powercord/components/settings');
 const ReplaceOptionList = require('./ReplaceOptionList.jsx');
 
 module.exports = class TextReplaceSettings extends React.PureComponent {
@@ -8,7 +8,7 @@ module.exports = class TextReplaceSettings extends React.PureComponent {
 
         this.state = {
             enabled: this.props.getSetting('enabled', true),
-            keyList: this.props.getSetting('keylist', [{key: "test", value: "testing"}]),
+            keyList: this.props.getSetting('keylist', []),
         }
     }
 
@@ -24,7 +24,7 @@ module.exports = class TextReplaceSettings extends React.PureComponent {
                     Enabled text replacement
                 </SwitchItem>
 
-                <ReplaceOptionList settings={this.state.keyList}/>
+                <ReplaceOptionList settings={this.state.keyList} getSetting={this.props.getSetting} updateSetting={this.props.updateSetting}/>
             </div>
         )
     }

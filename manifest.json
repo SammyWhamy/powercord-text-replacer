@@ -1,6 +1,6 @@
 {
   "name": "Text Replacer",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A simple Powercord plugin to replace any text with any other text",
   "author": "Sammy#1001",
   "license": "MIT"
